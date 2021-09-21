@@ -1,0 +1,46 @@
+digraph G {
+  
+    subgraph cluster_region {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        label = "Region: Asia Pacific (Sydney)";
+
+        subgraph cluster_av_0 {
+            style=filled;
+            color=lightgrey;
+            node [style=filled,color=white];
+            a0 -> a1 -> a2 -> a3;
+            label = "ap-southeast-2a";
+        }
+    
+        subgraph cluster_av_1 {
+            style=filled;
+            color=lightgrey;
+            node [style=filled,color=white];
+            b0 -> b1 -> b2 -> b3;
+            label = "ap-southeast-2b";
+        }
+        
+        subgraph cluster_av_2 {
+            style=filled;
+            color=lightgrey;
+            node [style=filled,color=white];
+            c0 -> c1 -> c2 -> c3;
+            label = "ap-southeast-2c";
+        }
+    
+        start -> a0;
+        start -> b0;
+        start -> c0;
+        a1 -> b3;
+        b2 -> a3;
+        a3 -> a0;
+        a3 -> end;
+        b3 -> end;
+        c3 -> end;
+        
+        start [shape=Mdiamond];
+        end [shape=Msquare];
+    }
+}
