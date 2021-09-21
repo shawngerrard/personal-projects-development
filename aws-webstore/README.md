@@ -7,6 +7,6 @@ The purpose of this project is to grow my understanding of the AWS cloud platrfo
 ## Success Measures
 - The infrastructure, data, and content can be replicated.
 - The provisioning and deployment of AWS services is at least 80% automated 
-- The steps followed, and the environment dependencies required, to replicate the webstore deployment is clearly outlined.
+- The steps followed, and the environment dependencies required, to replicate the webstore deployment are clearly outlined.
 
 
