@@ -6,6 +6,8 @@ I've included my own alias file to share the functions I've found useful while n
 
 Below are the aliases I've used in order of precedence.
 
-## whoami
+- [whoami](#whoami)
+
+## <a name="whoami"></a>whoami
 
 This function returns the user account currently active in the AWS CLI session.
