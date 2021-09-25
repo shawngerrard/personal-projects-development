@@ -4,7 +4,9 @@ You can create an alias file under **~/.aws/cli** (if one doesn't already exist)
 
 I've included my own alias file to share the functions I've found useful while navigating AWS CLI.
 
-Below are the aliases I've used in order of precedence.
+Below are the aliases I've used in order of precedence. You must use the 'aws' prefix before the alias to use it.
+
+```aws [alias]``` E.G ```aws whoami```
 
 - [whoami](#whoami)
 
