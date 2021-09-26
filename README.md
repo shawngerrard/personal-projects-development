@@ -24,4 +24,18 @@ sudo apt-get install -y python3-pip
 sudo apt-get install -y awscli
 ```
 
+## Install AWS CLI Alias Commands
 
+I've begun documenting AWS commands I use frequently and have thus created aliases commands for.
+
+Alias commands increase productivity by simplifying frequently used command or Bash script calls.
+
+Feel free to [review my alias library](.aws/cli/README.md) and use the code snippet below to install locally:
+
+```
+git clone git@github.com:shawngerrard/personal-projects-development.git
+mkdir -p ~/.aws/cli
+cp -i awscli-aliases/alias ~/.aws/cli/alias
+rm -rf personal-projects-development
+```
+**Note:** Make sure you backup any existing CLI alias configurations (```nano ~/.aws/cli/alias```) you want to keep before installing this. 
