@@ -8,7 +8,12 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 
 ```aws [alias]``` E.G ```aws whoami```
 
+- [get-region](#get-region)
 - [whoami](#whoami)
+
+## <a name="get-region"></a>get-region
+
+This function returns the region currently set for this AWS CLI session.
 
 ## <a name="whoami"></a>whoami
 
