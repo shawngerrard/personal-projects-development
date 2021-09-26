@@ -47,4 +47,21 @@ rm -rf personal-projects-development
 ```
 **Note:** Make sure you backup any existing CLI alias configurations (```mv ~/.aws/cli/alias ~/.aws/cli/alias_backup```) you want to keep before installing this. 
 
+## Create an IAM Administrator User and Group
+
+We need to create an administrator user in AWS IAM to do all our heavy lifting, rather than relying on the root account.
+
+First, lets create the **Administrators** group.
+
+```
+aws iam create-group --group-name Administrators
+```
+
+Next, lets attach the **AdministratorAccess** permissions policy to the Administrators group.
+
+```
+aws iam attach-group-policy --group-name Adminstrators --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+```
+**Note:** You can confirm the contents of a particular policy with ``aws iam get-policy``
+
 
