@@ -33,9 +33,17 @@ Alias commands increase productivity by simplifying frequently used command or B
 Feel free to [review my alias library](.aws/cli/README.md) and use the code snippet below to install locally:
 
 ```
+# Clone/copy the required files from the remote git repository to the current local directory
 git clone git@github.com:shawngerrard/personal-projects-development.git
+
+# Create the required directory to place AWS CLI aliases
 mkdir -p ~/.aws/cli
-cp -i awscli-aliases/alias ~/.aws/cli/alias
+
+# Copy the alias file from the cloned repository to the AWS CLI directory, prompt to overwrite
+cp -i personal-projects-development/.aws/cli/alias ~/.aws/cli/alias
+
+# Clean up the redundant repository clone
 rm -rf personal-projects-development
 ```
 **Note:** Make sure you backup any existing CLI alias configurations (```nano ~/.aws/cli/alias```) you want to keep before installing this. 
+
