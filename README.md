@@ -45,5 +45,6 @@ cp -i personal-projects-development/.aws/cli/alias ~/.aws/cli/alias
 # Clean up the redundant repository clone
 rm -rf personal-projects-development
 ```
-**Note:** Make sure you backup any existing CLI alias configurations (```nano ~/.aws/cli/alias```) you want to keep before installing this. 
+**Note:** Make sure you backup any existing CLI alias configurations (```mv ~/.aws/cli/alias ~/.aws/cli/alias_backup```) you want to keep before installing this. 
+
 
