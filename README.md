@@ -87,8 +87,4 @@ This will apply the login profile to the *administrator* profile we created earl
 aws iam create-login-profile --user-name administrator --password "#Apple123" --password-reset-required
 ```
 
-Next, lets add the new user to the new *Administrator* group we created earlier.
 
-```
-
-```
