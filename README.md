@@ -64,4 +64,14 @@ aws iam attach-group-policy --group-name Adminstrators --policy-arn arn:aws:iam:
 ```
 **Note:** You can confirm the contents of a particular policy with ``aws iam get-policy``
 
+Next, lets create an IAM account to delegate our platform administrative tasks.
+
+```
+aws iam create-user --user-name administrator --tags Key="Department",Value="Cloud Platform Services"
+```
+
+In this AWS call, I've also added a *Department* tag to the user.
+
+Now, lets give the user access to the AWS Management Console by creating a **login profile** for them.
+
 
