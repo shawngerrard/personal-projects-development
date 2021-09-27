@@ -8,8 +8,17 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 
 ```aws [alias]``` E.G ```aws whoami```
 
+- [delete-user](#delete-user) <username>
 - [get-region](#get-region)
 - [whoami](#whoami)
+
+## <a name="delete-user"></a>delete-user
+
+This function removes and/or deletes all of the user-related dependencies (groups, policies, login profiles, etc) before finally deleting the IAM user.
+
+```
+aws delete-user "shawng"
+```
 
 ## <a name="get-region"></a>get-region
 

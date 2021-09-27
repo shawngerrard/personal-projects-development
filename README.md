@@ -62,7 +62,8 @@ Next, lets attach the **AdministratorAccess** permissions policy to the Administ
 ```
 aws iam attach-group-policy --group-name Adminstrators --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 ```
-**Note:** You can confirm the contents of a particular policy with ``aws iam get-policy``
+**Note:** You can confirm the contents of a particular policy with the ``aws iam get-policy`` command.
+**Note:** In the future, I may add a section here about [AWS Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) and how to [create them](https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html).
 
 Next, lets create an IAM account to delegate our platform administrative tasks.
 
@@ -72,6 +73,22 @@ aws iam create-user --user-name administrator --tags Key="Department",Value="Clo
 
 In this AWS call, I've also added a *Department* tag to the user.
 
+Next, lets add the new user to the new *Administrator* group we created earlier.
+
+```
+aws iam add-user-to-group --group-name "Administrators" --user-name "administrator"
+```
+
 Now, lets give the user access to the AWS Management Console by creating a **login profile** for them.
 
+This will apply the login profile to the *administrator* profile we created earlier, with the password *#Apple123*.
 
+```
+aws iam create-login-profile --user-name administrator --password "#Apple123" --password-reset-required
+```
+
+Next, lets add the new user to the new *Administrator* group we created earlier.
+
+```
+
+```
