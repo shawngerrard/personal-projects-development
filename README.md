@@ -81,10 +81,32 @@ aws iam add-user-to-group --group-name "Administrators" --user-name "administrat
 
 Now, lets give the user access to the AWS Management Console by creating a **login profile** for them.
 
-This will apply the login profile to the *administrator* profile we created earlier, with the password *#Apple123*.
+The following code will apply the login profile to the *administrator* profile we created earlier, with the password *#Apple123*.
 
 ```
 aws iam create-login-profile --user-name administrator --password "#Apple123" --password-reset-required
 ```
 
+Next, we will also want to provide programmatic access through AWS CLI and API. We do this by creating an access key and attaching it to the user.
+
+```
+aws iam create-access-key --user-name administrator
+```
+**Note:** You may want to store the output (specifically, the access and secret keys) somewhere safe as you won't be able to recover the secret key again.
+
+To be able to use this new user profile in the CLI, we must first add the profile and its access keys to our credentials file (```~/.aws/credentials```).
+
+We can do this programatically with the following code, but first be sure to replace the secret access key placeholder with the secret key provided from the last step.
+
+```
+# Add the access key ID to a new administrator profile 
+aws configure set aws_access_key_id `aws iam list-access-keys --user-name administrator --query 'AccessKeyMetadata[*].AccessKeyId' --output text` --profile administrator
+
+# Add the secret access key from the previous step to the administrator profile
+aws configure set aws_secret_access_key <Enter Secret Key Here> --profile administrator
+```
+
+Now, you should be able to use this profile to make AWS resource calls, E.G: ```aws s3 ls --profile administrator```.
+
+I recommend removing access keys for the root user and replacing your default profile (in your configuration and credentials files under ```~/.aws```) with the *administrator* profile we've just created.
 
