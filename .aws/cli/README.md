@@ -14,6 +14,8 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 
 ## <a name="delete-user"></a>delete-user
 
+**Rationale:** Before AWS can delete an IAM user, all related dependencies to the user must also be removed/deleted.
+
 This function removes and/or deletes all of the user-related dependencies (groups, policies, login profiles, etc) before finally deleting the IAM user.
 
 ```
