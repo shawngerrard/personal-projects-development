@@ -9,7 +9,9 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Install / Update Packages](#packages)
     - [Install AWS CLI Alias Commands](#installcli)
     - [Create an IAM Administrator User and Group](#createadmin)
-
+- [Step 1 - Create and Start an Amazon EC2 Instance](#ec2instance)
+    - [Create EC2 Authentication Key Pairs](#ec2keys)
+    - [Create a Security Group](#ec2sg)
 
 ## Prerequisites / Considerations <a name='prereqs'></a>
 
@@ -128,18 +130,35 @@ I recommend removing access keys for the root user and replacing your default pr
 **Note:** To use this account on another machine, you will need to run the code block above to set the AWS access key ID and secret key that you generated in the previous steps.
 
 
-## Step 1 - Creeate and Start an Amazon EC2 Instance <a name="instance"></a>
+## Step 1 - Create and Start an Amazon EC2 Instance <a name="ec2instance"></a>
 
-### Create Authentication Key Pairs
+
+### Create Authentication Key Pairs <a name="ec2keys"></a>
 
 To connect and interact with Amazon EC2 instances over SSH, we must first create SSH keys that will authenticate specific Amazon/AWS resources (in this case, EC2) with the current local machine.
 
 You could use the ```ssh-keygen``` command to generate the key pairs, then import them into AWS using ```aws ec2 import-key-pair --key-name "my-key" --public-key-material fileb://~/.ssh/my-key.pub```. However, we're going to use AWS to generate the keys and import them. We do this with the following command:
 
 ```
-aws ec2 create-key-pair --key-name MyKeyPair --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/MyKeyPair.pem
+aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > ~/.ssh/MyKeyPair.pem
 ```
 
 This command will create a 2048-bit RSA key pair, import the public key into Amazon EC2, and pipe the private key output into a private key file that is saved in your *.ssh* folder.
+
+We will also set the permissions on the key file to ensure that it can only be read by this current user.
+
+```
+chmod 400 MyKeyPair.pem
+```
+
+To display the SHA1 hash fingerprint of the public key stored in AWS, you can use the following command:
+
+```
+aws ec2 describe-key-pairs --key-name MyKeyPair --query 'KeyPairs[*].[KeyName,KeyFingerprint]' --output text
+```
+**Note:** You can remove the ```--key-name``` option to list all keys, or use ```grep``` and/or ```awk``` on the key name.
+
+
+### Create a Security Group <a name="ec2sg"></a>
 
 
