@@ -11,7 +11,7 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Create an IAM Administrator User and Group](#createadmin)
 
 
-<a name='prereqs'></a>## Prerequisites / Considerations
+## Prerequisites / Considerations <a name='prereqs'></a>
 1. Ensure your installed modules are up-to-date.
 
 ```
@@ -35,7 +35,7 @@ sudo apt-get install -y awscli
 ```
 
 
-<a name='installcli'></a>## Install AWS CLI Alias Commands
+## Install AWS CLI Alias Commands <a name='installcli'></a>
 
 I've begun documenting AWS commands I use frequently and have thus created aliases commands for.
 
@@ -59,7 +59,7 @@ rm -rf personal-projects-development
 **Note:** Make sure you backup any existing CLI alias configurations (```mv ~/.aws/cli/alias ~/.aws/cli/alias_backup```) you want to keep before installing this. 
 
 
-<a name='createadmin'></a>## Create an IAM Administrator User and Group
+## Create an IAM Administrator User and Group <a name='createadmin'></a>
 
 We need to create an administrator user in AWS IAM to do all our heavy lifting, rather than relying on the root account.
 
