@@ -110,3 +110,6 @@ Now, you should be able to use this profile to make AWS resource calls, E.G: ```
 
 I recommend removing access keys for the root user and replacing your default profile (in your configuration and credentials files under ```~/.aws```) with the *administrator* profile we've just created.
 
+**Note:** To use this account on another machine, you will need to run the code block above to set the AWS access key ID and secret key that you generated in the previous steps.
+
+
