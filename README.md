@@ -128,3 +128,18 @@ I recommend removing access keys for the root user and replacing your default pr
 **Note:** To use this account on another machine, you will need to run the code block above to set the AWS access key ID and secret key that you generated in the previous steps.
 
 
+## Step 1 - Creeate and Start an Amazon EC2 Instance <a name="instance"></a>
+
+### Create Authentication Key Pairs
+
+To connect and interact with Amazon EC2 instances over SSH, we must first create SSH keys that will authenticate specific Amazon/AWS resources (in this case, EC2) with the current local machine.
+
+You could use the ```ssh-keygen``` command to generate the key pairs, then import them into AWS using ```aws ec2 import-key-pair --key-name "my-key" --public-key-material fileb://~/.ssh/my-key.pub```. However, we're going to use AWS to generate the keys and import them. We do this with the following command:
+
+```
+aws ec2 create-key-pair --key-name MyKeyPair --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/MyKeyPair.pem
+```
+
+This command will create a 2048-bit RSA key pair, import the public key into Amazon EC2, and pipe the private key output into a private key file that is saved in your *.ssh* folder.
+
+
