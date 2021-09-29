@@ -160,3 +160,7 @@ aws ec2 describe-key-pairs --key-name MyKeyPair --query 'KeyPairs[*].[KeyName,Ke
 
 
 ### Create an Amazon EC2 Security Group <a name="ec2sg"></a>
+
+A security group basically acts like a firewall for our EC2 instance, to control the flow of inbound and outbound traffic.
+
+
