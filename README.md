@@ -178,6 +178,6 @@ The first rule we'll define will allow *SSH traffic on port 22* originating from
 ```
 aws ec2 authorize-security-group-ingress --group-name administrator_sg_apsoutheast2 --protocol tcp --port 22 --cidr `curl https://checkip.amazonaws.com | awk '{ sub(/[.]([0-9]{2,3})$/,".0/24"); print }'`
 ```
-**Note:** The end of this command requests your external IP address from Amazon and creates a [Class C](https://www.watchguard.com/wgrd-resource-center/security-fundamentals/understanding-ipv4-subnetting-part-one) address mask from it.
+**Note:** The end of this command requests your external IP address from Amazon and creates a [Class C CIDR address mask](https://www.watchguard.com/wgrd-resource-center/security-fundamentals/understanding-ipv4-subnetting-part-one) from it.
 For example - if Amazon returned my external IP address as *121.99.164.101*, the command will transform that address into *121.99.164.0/24* and set the ```--cidr``` attribute with this value.
 
