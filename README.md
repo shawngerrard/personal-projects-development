@@ -12,6 +12,7 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
 - [Step 1 - Create and Start an Amazon EC2 Instance](#ec2instance)
     - [Create Amazon EC2 Authentication Key Pairs](#ec2keys)
     - [Create an Amazon EC2 Security Group](#ec2sg)
+    - [Create an Inbound Rule for the EC2 Security Group](#sgrule1)
 
 ## Prerequisites / Considerations <a name='prereqs'></a>
 
@@ -159,7 +160,7 @@ aws ec2 describe-key-pairs --key-name MyKeyPair --query 'KeyPairs[*].[KeyName,Ke
 **Note:** You can remove the ```--key-name``` option to list all keys, or use ```grep``` and/or ```awk``` on the key name.
 
 
-### Create an Amazon EC2 Security Group <a name="ec2sg"></a>
+### Create an Amazon EC2 Security Group <a name="ec2sg1"></a>
 
 Now that we have a way to authenticate with an Amazon EC2 instance, we need to configure a [Security Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html) to control the flow of inbound/outbound traffic to/from an EC2 instance.
 
@@ -170,6 +171,8 @@ To create a Security Group, first think of a good name for it (I've used the tem
 ```
 aws ec2 create-security-group --group-name administrator_sg_apsoutheast2 --description "Security Group for Amazon EC2 instance 1" --tag-specifications ResourceType="security-group"
 ```
+
+### Add an Inbound Rule to the EC2 Security Group <a name="sgrule1"></a>
 
 Next, we need to create and add rules to the Security Group.
 
@@ -182,9 +185,4 @@ aws ec2 authorize-security-group-ingress --group-name administrator_sg_apsouthea
 For example - if Amazon returned my external IP address as *121.99.164.101*, the command will transform that address into *121.99.164.101/24* and set the ```--cidr``` attribute with this value.
 
 **Note:** In the future, I will add here instructions to create a template function that will update your external IP, as well as a cronjob or alternative method that will periodically initiate the function.
-
-
-
-
-
 
