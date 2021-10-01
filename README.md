@@ -163,6 +163,8 @@ aws ec2 describe-key-pairs --key-name MyKeyPair --query 'KeyPairs[*].[KeyName,Ke
 
 Now that we have a way to authenticate with an Amazon EC2 instance, we need to configure a [Security Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html) to control the flow of inbound/outbound traffic to/from an EC2 instance.
 
+**Note:** By default, Security Groups deny all inbound and allow all outbound traffic.
+
 To create a Security Group, first think of a good name for it (I've used the template *<username/role>_sg_<region>* to create "administrator_sg_apsoutheast2"), and then run the following code to create it with this name and also a brief description.
 
 ```
