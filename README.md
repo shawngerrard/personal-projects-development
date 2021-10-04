@@ -3,6 +3,7 @@ A place to store code relating to personal projects. This is code in development
 
 The current project is to use AWS CLI to interact with services to spin-up an accessible web server.
 
+<hr>
 
 ## Contents
 - [Pre-requisites / Considerations](#prereqs)
@@ -13,6 +14,8 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Create Amazon EC2 Authentication Key Pairs](#ec2keys)
     - [Create an Amazon EC2 Security Group](#ec2sg)
     - [Create an Inbound Rule for the EC2 Security Group](#sgrule1)
+
+<hr>
 
 ## Prerequisites / Considerations <a name='prereqs'></a>
 
