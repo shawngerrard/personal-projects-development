@@ -188,3 +188,12 @@ For example - if Amazon returned my external IP address as *121.99.164.101*, the
 
 **Note:** In the future, I may add instructions here to create a template function that will update your external IP, as well as a cronjob or alternative method that will periodically initiate the function.
 
+Now, we will allow all inbound traffic over HTTP and HTTPS with the following code:
+
+```
+# Allow all inbound traffic over HTTPS
+aws ec2 authorize-security-group-ingress --group-name administrator_sg_apsoutheast2 --protocol tcp --port 443 --cidr 0.0.0.0/0
+
+# Allow all inbound traffic over HTTP
+aws ec2 authorize-security-group-ingress --group-name administrator_sg_apsoutheast2 --protocol tcp --port 80 --cidr 0.0.0.0/0
+```
