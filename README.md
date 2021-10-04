@@ -179,10 +179,12 @@ Next, we need to create and add rules to the Security Group.
 The first rule we'll define will allow *SSH traffic on port 22* originating from your IP address to enter. Use the following code to create the rule and attach it to the security group we've created.
 
 ```
-aws ec2 authorize-security-group-ingress --group-name administrator_sg_apsoutheast2 --protocol tcp --port 22 --cidr `curl https://checkip.amazonaws.com | awk '{ sub(/[.]([0-9]{2,3})$/,"&/24"); print }'`
+aws ec2 authorize-security-group-ingress --group-name administrator_sg_apsoutheast2 --protocol tcp --port 22 --cidr `curl https://checkip.amazonaws.com | awk '{ sub(/[.]([0-9]{2,3})$/,"&/32"); print }'`
 ```
 **Note:** The end of this command requests your external IP address from Amazon and creates a [Class C CIDR address mask](https://www.watchguard.com/wgrd-resource-center/security-fundamentals/understanding-ipv4-subnetting-part-one) from it.
-For example - if Amazon returned my external IP address as *121.99.164.101*, the command will transform that address into *121.99.164.101/24* and set the ```--cidr``` attribute with this value.
+For example - if Amazon returned my external IP address as *121.99.164.101*, the command will transform that address into *121.99.164.101/32* and set the ```--cidr``` attribute with this value.
 
-**Note:** In the future, I will add here instructions to create a template function that will update your external IP, as well as a cronjob or alternative method that will periodically initiate the function.
+**Note:** The ```/32``` part of the CIDR IP address notation indicates to AWS to use your individual IP address. You could set a range of IP's by changing the CIDR number, however you must be careful doing this on external IP's due to the ambiguity of the netmask that the ISP uses to allocate your IP address.
+
+**Note:** In the future, I may add instructions here to create a template function that will update your external IP, as well as a cronjob or alternative method that will periodically initiate the function.
 

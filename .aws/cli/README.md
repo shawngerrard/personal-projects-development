@@ -10,6 +10,7 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 
 - [delete-user](#delete-user) <username>
 - [get-region](#get-region)
+- [revoke-all-ec2-ingress-rules](#revoke-all-ec2-ingress-rules)
 - [whoami](#whoami)
 
 ## <a name="delete-user"></a>delete-user
@@ -25,6 +26,18 @@ aws delete-user "shawng"
 ## <a name="get-region"></a>get-region
 
 This function returns the region currently set for this AWS CLI session.
+
+
+## <a name="revoke-all-ec2-ingress-rules"></a>delete-user
+
+This function will revoke *all* ingress rules on a specified security group name.
+
+Use the following code to use the function correctly:
+
+```
+aws revoke-all-ec2-ingress-rules <group name>
+```
+
 
 ## <a name="whoami"></a>whoami
 
