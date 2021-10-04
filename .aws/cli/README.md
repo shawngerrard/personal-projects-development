@@ -34,7 +34,7 @@ This function returns the region currently set for this AWS CLI session.
 
 <hr>
 
-## <a name="get-security-group-id"></a>get-security-group-id
+## <a name="get-sg-id"></a>get-security-group-id
 
 This function returns the security group ID from a specified security group name.
 
