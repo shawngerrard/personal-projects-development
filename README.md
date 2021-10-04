@@ -130,6 +130,7 @@ I recommend removing access keys for the root user and replacing your default pr
 
 **Note:** To use this account on another machine, you will need to run the code block above to set the AWS access key ID and secret key that you generated in the previous steps.
 
+<hr>
 
 ## Step 1 - Create and Start an Amazon EC2 Instance <a name="ec2instance"></a>
 
