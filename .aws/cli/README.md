@@ -13,7 +13,7 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 - [revoke-all-ec2-ingress-rules](#revoke-all-ec2-ingress-rules)
 - [whoami](#whoami)
 
-<hr />
+<hr>
 ## <a name="delete-user"></a>delete-user
 
 **Rationale:** Before AWS can delete an IAM user, all related dependencies to the user must also be removed/deleted.
