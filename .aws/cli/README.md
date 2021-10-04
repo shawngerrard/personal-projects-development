@@ -13,6 +13,7 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 - [revoke-all-ec2-ingress-rules](#revoke-all-ec2-ingress-rules)
 - [whoami](#whoami)
 
+<hr />
 ## <a name="delete-user"></a>delete-user
 
 **Rationale:** Before AWS can delete an IAM user, all related dependencies to the user must also be removed/deleted.
@@ -22,13 +23,13 @@ This function removes and/or deletes all of the user-related dependencies (group
 ```
 aws delete-user "shawng"
 ```
-
+<hr />
 ## <a name="get-region"></a>get-region
 
 This function returns the region currently set for this AWS CLI session.
 
-
-## <a name="revoke-all-ec2-ingress-rules"></a>delete-user
+<hr />
+## <a name="revoke-all-ec2-ingress-rules"></a>revoke-all-ec2-ingress-rules
 
 This function will revoke *all* ingress rules on a specified security group name.
 
@@ -38,7 +39,7 @@ Use the following code to use the function correctly:
 aws revoke-all-ec2-ingress-rules <group name>
 ```
 
-
+<hr />
 ## <a name="whoami"></a>whoami
 
 This function returns the user account currently active in the AWS CLI session.
