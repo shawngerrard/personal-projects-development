@@ -10,7 +10,8 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 
 - [delete-user](#delete-user) <username>
 - [get-region](#get-region)
-- [revoke-all-ec2-ingress-rules](#revoke-all-ec2-ingress-rules)
+- [get-security-group-id](#get-sg-id) <security group name>
+- [revoke-all-ec2-ingress-rules](#revoke-all-ec2-ingress-rules) <security group name>
 - [whoami](#whoami)
 
 <hr>
@@ -30,6 +31,18 @@ aws delete-user "shawng"
 ## <a name="get-region"></a>get-region
 
 This function returns the region currently set for this AWS CLI session.
+
+<hr>
+
+## <a name="get-security-group-id"></a>get-security-group-id
+
+This function returns the security group ID from a specified security group name.
+
+Use the following code to use the function correctly:
+
+```
+aws ec2 describe-security-groups --group-name <security group name> --query 'SecurityGroups[].GroupId' --output text
+```
 
 <hr>
 
