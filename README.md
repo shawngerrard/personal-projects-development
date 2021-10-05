@@ -280,6 +280,15 @@ aws get-instance-by-tag Name awsec2-administrator
 
 ### Connect to an Amazon EC2 Instance <a name="connec2"></a>
 
+Now that the instance is launched, we can connect to it and use it the way you'd use a computer.
+
+Because we've allowed SSH traffic into the instance, we can connect to it using SSH.
+
+```
+ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name
+```
+
+
 ### Terminate an Amazon EC2 Instance <a name="termec2"></a>
 
 
