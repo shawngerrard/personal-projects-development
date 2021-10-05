@@ -9,6 +9,7 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 ```aws [alias]``` E.G ```aws whoami```
 
 - [delete-user](#delete-user) <username>
+- [describe-ec2-states](#describe-ec2-states)
 - [get-region](#get-region)
 - [get-security-group-id](#get-sg-id) <security group name>
 - [revoke-all-ec2-ingress-rules](#revoke-all-ec2-ingress-rules) <security group name>
@@ -25,6 +26,16 @@ This function removes and/or deletes all of the user-related dependencies (group
 ```
 aws delete-user "shawng"
 ```
+
+<hr>
+
+## <a name="describe-ec2-states"></a>describe-ec2-states
+
+**Rationale:** There doesn't seem to be an easy method to retrieve the state of all EC2 instances.
+
+This function returns a list of all active instances and their current state (E.G - pending, running, terminated), as well as their public DNS name if one has been allocated by Amazon.
+
+This is useful when you want to track the state status of instances, for example - when you first launch an instance.
 
 <hr>
 
