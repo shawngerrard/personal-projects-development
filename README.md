@@ -14,6 +14,7 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Create Amazon EC2 Authentication Key Pairs](#ec2keys)
     - [Create an Amazon EC2 Security Group](#ec2sg)
     - [Create an Inbound Rule for the EC2 Security Group](#sgrule1)
+    - [Launch an EC2 Linux Instance](#launchlinuxec2)
 
 <hr>
 
@@ -201,3 +202,50 @@ aws ec2 authorize-security-group-ingress --group-name administrator_sg_apsouthea
 # Allow all inbound traffic over HTTP
 aws ec2 authorize-security-group-ingress --group-name administrator_sg_apsoutheast2 --protocol tcp --port 80 --cidr 0.0.0.0/0
 ```
+
+
+### Launch an EC2 Linux Instance <a name="launchlinuxec2"></a>
+
+At last - we're ready to configure and launch an AWS EC2 Linux instance!
+
+To launch an instance, we **must** specify the following details with the launch call:
+- The Amazon Machine Image (AMI) to launch the instance with.
+- The instance type we want to launch.
+- The private key (that we crreated earlier) to use when connecting to the instannce via SSH. 
+
+The AMI is a template that contains software configurations. These configurations set what operating system, application servers, and/or applications we want to install into the instance.
+
+Amazon has a large library of pre-configured AMI's, however users may create a customized AMI according to needs.
+
+For the purposes of this example, we'll use a preconfigured, public AMI from Amazon that will be suitable for both our use-case and also our AWS free-tier constraints.
+
+You can use ```aws ec2 describe-images --owners self amazon``` with filter options to display particular AMI's, or access the AMI section in the [Amazon EC2 console](https://console.aws.amazon.com/ec2/).
+
+For this example, the AMI we'll use has the following attributes:
+
+Attribute|Value
+---------------
+AMI ID|ami-0210560cedcb09f07
+AMI Name|Amazon Linux 2 AMI
+Platform|Amazon Linux
+CPU Architecture|x86-64
+Virtualisation|HVM
+Root Device Type|Elastic Block Storage (EBS)
+
+We can launch this EC2 instance with the following code:
+
+```
+aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn-ami-hvm-x86_64-gp2 --count 1 --instance-type t2.micro --key-name <Key Name as per above> --security-group-ids `aws get-security-group-id administrator_sg_apsoutheast2`
+```
+
+This code will do the following:
+- Use the [Systems Manager (SSM) public parameter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html#finding-an-ami-parameter-store) to retrieve the latest Amazon Linux 2 x86-64 image.
+**Note:** You can update this parameter to specifically target a version if you want to control version migration.
+- Create a single instance.
+- Define the instance type as [T2.Micro](https://aws.amazon.com/ec2/instance-types/).
+- Define the SSH key-pair to use to connect to the instance - in this case, we should be using the SSH key created earlier.
+- Retrieve the ID of the security group we created earlier, and attach the security group to the instance.
+- Launch the instance.
+
+If you're using the [Alias file](.aws/cli/alias) I've included in this repository, you'll be able to use the ```aws describe-ec2-states``` to check for when the instance is running.
+
