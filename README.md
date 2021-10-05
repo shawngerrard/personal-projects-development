@@ -223,14 +223,14 @@ You can use ```aws ec2 describe-images --owners self amazon``` with filter optio
 
 For this example, the AMI we'll use has the following attributes:
 
-Attribute|Value
----------------
-AMI ID|ami-0210560cedcb09f07
-AMI Name|Amazon Linux 2 AMI
-Platform|Amazon Linux
-CPU Architecture|x86-64
-Virtualisation|HVM
-Root Device Type|Elastic Block Storage (EBS)
+| Attribute | Value |
+| ----------| ----- |
+| AMI ID | ami-0210560cedcb09f07 |
+| AMI Name | Amazon Linux 2 AMI |
+| Platform | Amazon Linux |
+| CPU Architecture | x86-64 |
+| Virtualisation | HVM |
+| Root Device Type | Elastic Block Storage (EBS) |
 
 We can launch this EC2 instance with the following code:
 
