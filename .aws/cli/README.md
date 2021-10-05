@@ -41,7 +41,7 @@ This function returns the security group ID from a specified security group name
 Use the following code to use the function correctly:
 
 ```
-aws ec2 describe-security-groups --group-name <security group name> --query 'SecurityGroups[].GroupId' --output text
+aws get-security-group-id <security group name>
 ```
 
 <hr>
