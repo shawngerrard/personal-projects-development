@@ -16,6 +16,9 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Create an Inbound Rule for the EC2 Security Group](#sgrule1)
     - [Launch an EC2 Linux Instance](#launchlinuxec2)
     - [Add a Tag to an EC2 Instance](#ec2tag)
+- [Step 2 - Connect To and Terminate an Amazon EC2 Instance](#conntermec2)
+    - [Connect to an Amazon EC2 Instance](#connec2)
+    - [Terminate an Amazon EC2 Instance](#termec2)
 
 <hr>
 
@@ -270,5 +273,13 @@ Using the Alias function set in my [Alias file](.aws/cli/alias), you can retriev
 ```
 aws get-instance-by-tag Name awsec2-administrator
 ```
+
+<hr>
+
+## Step 2 - Connect To and Terminate an Amazon EC2 Instance <a name="conntermec2"></a>
+
+### Connect to an Amazon EC2 Instance <a name="connec2"></a>
+
+### Terminate an Amazon EC2 Instance <a name="termec2"></a>
 
 
