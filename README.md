@@ -15,6 +15,7 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Create an Amazon EC2 Security Group](#ec2sg)
     - [Create an Inbound Rule for the EC2 Security Group](#sgrule1)
     - [Launch an EC2 Linux Instance](#launchlinuxec2)
+    - [Add a Tag to an EC2 Instance](#ec2tag)
 
 <hr>
 
@@ -248,4 +249,26 @@ This code will do the following:
 - Launch the instance.
 
 If you're using the [Alias file](.aws/cli/alias) I've included in this repository, you'll be able to use the ```aws describe-ec2-states``` to check for when the instance is running.
+
+
+### Add a Tag to an EC2 Instance <a name="ec2tag"></a>
+
+Next, we want to add a tag that can easily identify the new EC2 instance, as instances do not have a name field by default.
+
+```
+aws ec2 create-tags --resources `aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId" --output text` --tags Key=Name,Value=AWSEC2-Administrator
+```
+
+This will set the tag **Name** with the value **AWSEC2-Administrator**. We can reference this instance now with the following code:
+
+```
+aws ec2 describe-instances --filters "Name=tag:Name,Values=awsec2-administrator"
+```
+
+Using the Alias function set in my [Alias file](.aws/cli/alias), you can retrieve the instance we've just created by the tag we've just created by using the following code:
+
+```
+aws get-instance-by-tag Name awsec2-administrator
+```
+
 
