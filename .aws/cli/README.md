@@ -10,6 +10,7 @@ Below are the aliases I've used in order of precedence. You must use the 'aws' p
 
 - [delete-user](#delete-user) <username>
 - [describe-ec2-states](#describe-ec2-states)
+- [get-instance-by-tag](#get-instance-by-tag) <tag name> <tag value>
 - [get-region](#get-region)
 - [get-security-group-id](#get-sg-id) <security group name>
 - [revoke-all-ec2-ingress-rules](#revoke-all-ec2-ingress-rules) <security group name>
@@ -36,6 +37,19 @@ aws delete-user "shawng"
 This function returns a list of all active instances and their current state (E.G - pending, running, terminated), as well as their public DNS name if one has been allocated by Amazon.
 
 This is useful when you want to track the state status of instances, for example - when you first launch an instance.
+
+<hr>
+
+## <a name="get-instance-by-tag"></a>get-instance-by-tag
+
+**Rationale:** Simplifies the referencing of EC2 instance tags.
+
+This function retrieves the instances that meet the specified tag requirements.
+
+```
+#aws get-instance-by-tag <tag name> <tag value>
+aws get-instance-by-tag Name AWSEC2-Administrator
+```
 
 <hr>
 
