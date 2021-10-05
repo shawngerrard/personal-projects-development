@@ -259,10 +259,10 @@ If you're using the [Alias file](.aws/cli/alias) I've included in this repositor
 Next, we want to add a tag that can easily identify the new EC2 instance, as instances do not have a name field by default.
 
 ```
-aws ec2 create-tags --resources `aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId" --output text` --tags Key=Name,Value=AWSEC2-Administrator
+aws ec2 create-tags --resources `aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId" --output text` --tags Key=Name,Value=awsec2-administrator
 ```
 
-This will set the tag **Name** with the value **AWSEC2-Administrator**. We can reference this instance now with the following code:
+This will set the tag **Name** with the value **awsec2-administrator**. We can reference this instance now with the following code:
 
 ```
 aws ec2 describe-instances --filters "Name=tag:Name,Values=awsec2-administrator"
