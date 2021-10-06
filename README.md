@@ -284,10 +284,10 @@ aws get-instance-by-tag Name awsec2-administrator
 
 Now that the instance is launched, we can connect to it and use it the way you'd use a computer.
 
-Because we've allowed SSH traffic into the instance, we can connect to it using SSH.
+Because we've allowed SSH traffic into the instance, we can connect to it by using SSH and referencing the instance public DNS name.
 
 ```
-ssh -i <path/to/key>.pem ec2-user@`aws ec2 describe-instances --filters Name=tag:Name,Values=awsec2-administrator Name=instance-state-name,Values=running  --query 'Reservations[].Instances[].PublicDnsName' --output text`
+ssh -i <path/to/key>.pem ec2-user@`aws ec2 describe-instances --filters Name=instance-state-name,Values=running Name=tag:Name,Values=awsec2-administrator --query 'Reservations[].Instances[].PublicDnsName' --output text`
 ```
 **Note:** Replace the path to the key with the key path that you create earlier.
 
