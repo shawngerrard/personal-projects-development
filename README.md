@@ -351,7 +351,7 @@ Now we need to update the new *authorized_keys* file with the public key data we
 Use the following code to terminate the Amazon EC2 instance we've started.
 
 ```
-aws ec2 terminate-instances --instance-ids --filter "Name=tag:Name,Values=awsec2-administrator" --query 'Reservations[].Instances[].InstanceId'
+aws ec2 terminate-instances --instance-ids `aws ec2 describe-instances --filters "Name=tag:Name,Values=awsec2-administrator" --query 'Reservations[].Instances[].InstanceId' --output text`
 ```
 
 <hr>
