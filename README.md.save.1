@@ -10,17 +10,15 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Install / Update Packages](#packages)
     - [Install AWS CLI Alias Commands](#installcli)
     - [Create an IAM Administrator User and Group](#createadmin)
-- [Step 1 - Create and Start an Amazon EC2 Instance](#step1)
+- [Step 1 - Create and Start an Amazon EC2 Instance](#ec2instance)
     - [Create Amazon EC2 Authentication Key Pairs](#ec2keys)
     - [Create an Amazon EC2 Security Group](#ec2sg)
     - [Create an Inbound Rule for the EC2 Security Group](#sgrule1)
     - [Launch an EC2 Linux Instance](#launchlinuxec2)
     - [Add a Tag to an EC2 Instance](#ec2tag)
-- [Step 2 - Connect To and Terminate an Amazon EC2 Instance](#step2)
+- [Step 2 - Connect To and Terminate an Amazon EC2 Instance](#conntermec2)
     - [Connect to an Amazon EC2 Instance](#connec2)
-    - [Create a New User Account](#newuserec2)
     - [Terminate an Amazon EC2 Instance](#termec2)
-- [(Optional) Step 3 - Start an EC2 Instance using a CloudFormation Template](#step3)
 
 <hr>
 
@@ -278,90 +276,24 @@ aws get-instance-by-tag Name awsec2-administrator
 
 <hr>
 
-## Step 2 - Connect and Terminate an Amazon EC2 Instance<a name="conntermec2"></a>
+## Step 2 - Connect To and Terminate an Amazon EC2 Instance <a name="conntermec2"></a>
 
 ### Connect to an Amazon EC2 Instance <a name="connec2"></a>
 
-Now that the instance is launched, we can connect to it and use it the way you'd use a computer.
+When the EC2 instance is running, we can connect to it and use it as if it were a regular computer.
 
-Because we've allowed SSH traffic into the instance, we can connect to it using SSH.
-
-```
-ssh -i <path/to/key>.pem ec2-user@`aws ec2 describe-instances --filters "Name=tag:Name,Values=AWSEC2-Administrator" --query 'Reservations[].Instances[].PublicDnsName' --output text`
-```
-**Note:** Replace the path to the key with the key path that you create earlier.
-
-
-### Create a New User Account in EC2 <a name="newuserec2"></a>
-
-Before we create a new user, we need to create a new key-pair to allow this user to connect to this instance.
-
-You can create this key-pair by [using the instructions we followed earlier](#ec2keys). You can create the key-pair anywhere you like, but do be aware you will need to use the contents of the file in the next few steps.
-
-Once you've generated a new key-pair, retrieve the contents of the public key by running the following code on the computer holding it.
+Since we've allowed SSH traffic into our instance, we can connect to it using SSH.
 
 ```
-ssh-keygen -y -f ~/.ssh/admin_ec2_user.pem | xclip
+ssh -i <path/to/key> ec2-user@<instance public DNS name>
 ```
 
-In the instance terminal, let's now create a new user account.
-
-```
-sudo adduser administrator
-```
-
-**Note:** This will create a group and home directory for the account.
-
-Now, let's switch to the new account.
-
-```
-sudo su - administrator
-```
-
-We need to create an ```.ssh``` directory for the new administrator account and change its permissions so that only the owner can read/write and open the directory.
-
-```
-# Create the .ssh directory
-mkdir ~/.ssh
-
-# Change the permissions on the directory
-chmod 700 ~/.ssh
-```
-
-Next, we want to create a file named ```authorized_keys``` and change its file permissions so that **only the owner can read/write to the file**
-
-```
-# Create an empty file in .ssh
-touch ~/.ssh/authorized_keys
-
-# Update permissions on the file
-chmod 600 ~/.ssh/authorized_keys
-```
-
-Now we need to update the new *authorized_keys* file with the public key data we copied earlier.
-
-```
-
-```
+**Note:** We must initially connect using the user defined in the AMI we've used, which is *ec2-user*.
 
 
 
 ### Terminate an Amazon EC2 Instance <a name="termec2"></a>
 
-Use the following code to terminate the Amazon EC2 instance we've started.
-
-```
-aws ec2 terminate-instances --instance-ids --filter "Name=tag:Name,Values=awsec2-administrator" --query 'Reservations[].Instances[].InstanceId'
-```
-
-<hr>
-
-## (Optional) Step 3 - Start an EC2 Instance Using a CloudFormation Template <a name="step3"></a>
-
-While this section is optional, it's recommended to follow this step for the following reasons:
-1. CloudFormation templates manage your infrastructure as code and allow you to automate deployments.
-2. CloudFormation templates, with the use of [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data), rudimentally addresses the problems relating to secured key-based authentication of SSH access for multiple users to a single EC2 instance - you cannot do this by default using purely AWS CLI.
-3. CloudFormation templates provide a single source of truth for infrastructure deployments.
 
 
 
