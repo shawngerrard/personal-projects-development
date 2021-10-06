@@ -317,6 +317,32 @@ Now, let's switch to the new account.
 sudo su - administrator
 ```
 
+We need to create an ```.ssh``` directory for the new administrator account and change its permissions so that only the owner can read/write and open the directory.
+
+```
+# Create the .ssh directory
+mkdir ~/.ssh
+
+# Change the permissions on the directory
+chmod 700 ~/.ssh
+```
+
+Next, we want to create a file named ```authorized_keys``` and change its file permissions so that **only the owner can read/write to the file**
+
+```
+# Create an empty file in .ssh
+touch ~/.ssh/authorized_keys
+
+# Update permissions on the file
+chmod 600 ~/.ssh/authorized_keys
+```
+
+Now we need to update the new *authorized_keys* file with the public key data we copied earlier.
+
+```
+
+```
+
 
 
 ### Terminate an Amazon EC2 Instance <a name="termec2"></a>
