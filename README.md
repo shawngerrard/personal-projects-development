@@ -10,16 +10,17 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Install / Update Packages](#packages)
     - [Install AWS CLI Alias Commands](#installcli)
     - [Create an IAM Administrator User and Group](#createadmin)
-- [Step 1 - Create and Start an Amazon EC2 Instance](#ec2instance)
+- [Step 1 - Create and Start an Amazon EC2 Instance](#step1)
     - [Create Amazon EC2 Authentication Key Pairs](#ec2keys)
     - [Create an Amazon EC2 Security Group](#ec2sg)
     - [Create an Inbound Rule for the EC2 Security Group](#sgrule1)
     - [Launch an EC2 Linux Instance](#launchlinuxec2)
     - [Add a Tag to an EC2 Instance](#ec2tag)
-- [Step 2 - Connect To and Terminate an Amazon EC2 Instance](#conntermec2)
+- [Step 2 - Connect To and Terminate an Amazon EC2 Instance](#step2)
     - [Connect to an Amazon EC2 Instance](#connec2)
     - [Create a New User Account](#newuserec2)
     - [Terminate an Amazon EC2 Instance](#termec2)
+- [(Optional) Step 3 - Start an EC2 Instance using a CloudFormation Template](#step3)
 
 <hr>
 
@@ -346,5 +347,16 @@ Now we need to update the new *authorized_keys* file with the public key data we
 
 
 ### Terminate an Amazon EC2 Instance <a name="termec2"></a>
+
+
+<hr>
+
+## (Optional) Step 3 - Start an EC2 Instance Using a CloudFormation Template <a name="step3"></a>
+
+While this section is optional, it's recommended to follow this step for the following reasons:
+1. CloudFormation templates manage your infrastructure as code and allow you to automate deployments.
+2. CloudFormation templates, with the use of [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data), rudimentally addresses the problems relating to secured key-based authentication of SSH access for multiple users to a single EC2 instance - you cannot do this by default using purely AWS CLI.
+3. CloudFormation templates provide a single source of truth for infrastructure deployments.
+
 
 
