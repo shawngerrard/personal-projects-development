@@ -18,6 +18,7 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Add a Tag to an EC2 Instance](#ec2tag)
 - [Step 2 - Connect To and Terminate an Amazon EC2 Instance](#conntermec2)
     - [Connect to an Amazon EC2 Instance](#connec2)
+    - [Create a New User Account](#newuserec2)
     - [Terminate an Amazon EC2 Instance](#termec2)
 
 <hr>
@@ -276,7 +277,7 @@ aws get-instance-by-tag Name awsec2-administrator
 
 <hr>
 
-## Step 2 - Connect To and Terminate an Amazon EC2 Instance <a name="conntermec2"></a>
+## Step 2 - Connect and Terminate an Amazon EC2 Instance<a name="conntermec2"></a>
 
 ### Connect to an Amazon EC2 Instance <a name="connec2"></a>
 
@@ -288,6 +289,34 @@ Because we've allowed SSH traffic into the instance, we can connect to it using 
 ssh -i <path/to/key>.pem ec2-user@`aws ec2 describe-instances --filters "Name=tag:Name,Values=AWSEC2-Administrator" --query 'Reservations[].Instances[].PublicDnsName' --output text`
 ```
 **Note:** Replace the path to the key with the key path that you create earlier.
+
+
+### Create a New User Account in EC2 <a name="newuserec2"></a>
+
+Before we create a new user, we need to create a new key-pair to allow this user to connect to this instance.
+
+You can create this key-pair by [using the instructions we followed earlier](#ec2keys). You can create the key-pair anywhere you like, but do be aware you will need to use the contents of the file in the next few steps.
+
+Once you've generated a new key-pair, retrieve the contents of the public key by running the following code on the computer holding it.
+
+```
+ssh-keygen -y -f ~/.ssh/admin_ec2_user.pem | xclip
+```
+
+In the instance terminal, let's now create a new user account.
+
+```
+sudo adduser administrator
+```
+
+**Note:** This will create a group and home directory for the account.
+
+Now, let's switch to the new account.
+
+```
+sudo su - administrator
+```
+
 
 
 ### Terminate an Amazon EC2 Instance <a name="termec2"></a>
