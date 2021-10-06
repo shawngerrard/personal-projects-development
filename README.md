@@ -287,7 +287,7 @@ Now that the instance is launched, we can connect to it and use it the way you'd
 Because we've allowed SSH traffic into the instance, we can connect to it using SSH.
 
 ```
-ssh -i <path/to/key>.pem ec2-user@`aws ec2 describe-instances --filters "Name=tag:Name,Values=AWSEC2-Administrator" --query 'Reservations[].Instances[].PublicDnsName' --output text`
+ssh -i <path/to/key>.pem ec2-user@`aws ec2 describe-instances --filters "Name=tag:Name,Values=awsec2-administrator" --query 'Reservations[].Instances[].PublicDnsName' --output text`
 ```
 **Note:** Replace the path to the key with the key path that you create earlier.
 
