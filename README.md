@@ -338,10 +338,10 @@ touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
 
-Now we need to update the new *authorized_keys* file with the public key data we copied earlier.
+Now we need to update the new *~/.ssh/authorized_keys* file with the public key data we copied earlier. The following code snippet will send the contents of the clipboard into the *authorized_keys* file.
 
 ```
-
+cat >> ~/.ssh/authorized_keys
 ```
 
 
