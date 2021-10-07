@@ -344,6 +344,13 @@ Now we need to update the new *~/.ssh/authorized_keys* file with the public key 
 cat >> ~/.ssh/authorized_keys
 ```
 
+We can now terminate the session using ```exit```, which will return us back to our local terminal. 
+
+We now need to test if we can connect to EC2 using the new *administrator* account we've just created. Use the following code to achieve this:
+
+```
+ssh -i <path/to/private key>.pem administrator@`aws ec2 describe-instances --filters Name=tag:Name,Values=awsec2-administrator Name=instance-state-name,Values=running --query 'Reservations[].Instances[].PublicDnsName' --output text`
+```
 
 
 ### Terminate an Amazon EC2 Instance <a name="termec2"></a>
