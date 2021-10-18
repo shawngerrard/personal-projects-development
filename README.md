@@ -22,6 +22,7 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Terminate an Amazon EC2 Instance](#termec2)
 - [(Optional) Step 3 - Start an EC2 Instance using a CloudFormation Template](#step3)
 - [Step 4 - Set up a VPC with Public and Private Subnets](#step4)
+- [Step 5 - Prepare the LAMP Stack Server](#step5)
 
 <hr>
 
@@ -380,5 +381,12 @@ While this section is optional, it's recommended to follow this step for the fol
 **Editor Note:** This section possibly needs to be placed prior to step 1.
 
 By default, AWS creates a default VPC for all new accounts. VPC's are useful to decouple the public sections of your network from the private sections, so that public traffic only accesses the resources from the public subnet and are locked out from accesses private resources that are hidden in the private subnet behind ACL and Security Group policies.
+
+
+<hr>
+
+## Step 5 - Prepare the LAMP Stack Server<a name="step5"></a>
+
+For us to be able to serve web pages, we need a web server. So, therefore, we're going to install the LAMP stack into the new instance we created earlier.
 
 
