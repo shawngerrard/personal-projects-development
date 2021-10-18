@@ -21,7 +21,7 @@ The current project is to use AWS CLI to interact with services to spin-up an ac
     - [Create a New User Account](#newuserec2)
     - [Terminate an Amazon EC2 Instance](#termec2)
 - [(Optional) Step 3 - Start an EC2 Instance using a CloudFormation Template](#step3)
-- [Step 4 - Set up a VPC with Public and Private Subnets](#step4)
+
 
 <hr>
 
@@ -143,7 +143,7 @@ I recommend removing access keys for the root user and replacing your default pr
 
 <hr>
 
-## Step 1 - Create and Start an Amazon EC2 Instance <a name="step1"></a>
+## Step 1 - Create and Start an Amazon EC2 Instance <a name="ec2instance"></a>
 
 
 ### Create Authentication Key Pairs <a name="ec2keys"></a>
@@ -281,7 +281,7 @@ aws get-instance-by-tag Name awsec2-administrator
 
 <hr>
 
-## Step 2 - Connect and Terminate an Amazon EC2 Instance<a name="step2"></a>
+## Step 2 - Connect and Terminate an Amazon EC2 Instance<a name="conntermec2"></a>
 
 ### Connect to an Amazon EC2 Instance <a name="connec2"></a>
 
@@ -372,13 +372,5 @@ While this section is optional, it's recommended to follow this step for the fol
 2. CloudFormation templates, with the use of [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data), rudimentally addresses the problems relating to secured key-based authentication of SSH access for multiple users to a single EC2 instance - you cannot do this by default using purely AWS CLI.
 3. CloudFormation templates provide a single source of truth for infrastructure deployments.
 
-
-<hr>
-
-## Step 4 - Setup a VPC with Public and Private Subnets<a name="step4"></a>
-
-**Editor Note:** This section possibly needs to be placed prior to step 1.
-
-By default, AWS creates a default VPC for all new accounts. VPC's are useful to decouple the public sections of your network from the private sections, so that public traffic only accesses the resources from the public subnet and are locked out from accesses private resources that are hidden in the private subnet behind ACL and Security Group policies.
 
 
