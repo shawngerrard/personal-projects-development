@@ -260,6 +260,8 @@ If you're using the [Alias file](.aws/cli/alias) I've included in this repositor
 
 Next, we want to add a tag that can easily identify the new EC2 instance, as instances do not have a name field by default.
 
+**Note:** This is particularly important if your organization is using consolidated billing, in order to track which costs relate to what instance or service.
+
 ```
 aws ec2 create-tags --resources `aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId" --output text` --tags Key=Name,Value=awsec2-administrator
 ```
@@ -351,7 +353,6 @@ We now need to test if we can connect to EC2 using the new *administrator* accou
 ```
 ssh -i <path/to/private key>.pem administrator@`aws ec2 describe-instances --filters Name=tag:Name,Values=awsec2-administrator Name=instance-state-name,Values=running --query 'Reservations[].Instances[].PublicDnsName' --output text`
 ```
-
 
 ### Terminate an Amazon EC2 Instance <a name="termec2"></a>
 
