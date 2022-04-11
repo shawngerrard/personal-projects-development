@@ -2,7 +2,7 @@ name: Asterion AWS Infra Push Example
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   test-push:
     defaults:
