@@ -1,0 +1,18 @@
+name: Asterion AWS Infra Push Example
+on:
+  push:
+    branches:
+      - master
+jobs:
+  test-push:
+    defaults:
+      run:
+        shell: bash
+        working-directory: infra-aws
+    name: Github Actions Example
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Output
+        run: echo "$TESTVAR"
+        env:
+          TESTVAR: "Hello World"
